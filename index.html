@@ -1,1 +1,129 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>👑 IL NUOVO REGNO DI TIGROTTA 👑</title>
+    <style>
+        /* STILE BASE */
+        body, html { margin: 0; padding: 0; height: 100%; background: #050505; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow: hidden; }
+        
+        /* BARRA SUPERIORE */
+        .top-bar { height: 40px; background: #000; border-bottom: 3px solid #ff00ff; display: flex; align-items: center; box-shadow: 0 5px 15px rgba(255, 0, 255, 0.3); z-index: 10; }
+        .ticker { flex: 1; color: #00f2ff; font-weight: bold; font-size: 14px; text-transform: uppercase; }
+        #clock { padding: 0 20px; color: #ff00ff; font-family: monospace; font-size: 18px; font-weight: bold; text-shadow: 0 0 8px #ff00ff; border-left: 2px solid #333; }
 
+        /* CONTENITORE PRINCIPALE */
+        .wrapper { display: flex; width: 100%; height: calc(100vh - 40px); padding: 15px; box-sizing: border-box; gap: 15px; background: radial-gradient(circle at center, #111 0%, #000 100%); }
+        
+        /* COLONNE */
+        .col { display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: rgba(10, 10, 10, 0.9); border: 2px solid #333; transition: 0.3s; }
+        .col:hover { border-color: #555; box-shadow: 0 0 20px rgba(0, 242, 255, 0.1); }
+        
+        .col-left { width: 300px; border-color: #ff00ff; }
+        .col-main { flex: 1; border-color: #00f2ff; }
+        .col-right { width: 400px; border-color: #ff00ff; }
+
+        /* HEADER BOX */
+        .header { padding: 12px; text-align: center; font-size: 12px; font-weight: bold; letter-spacing: 1px; background: #1a1a1a; border-bottom: 1px solid #333; }
+        
+        /* IFRAME */
+        iframe { width: 100%; flex-grow: 1; border: none; }
+        
+        /* CHAT ARENA (FILTRO DARK) */
+        .col-main iframe { filter: invert(90%) hue-rotate(180deg) brightness(1.1); }
+
+        /* BOTTONI E INPUT */
+        .input-bar { display: flex; padding: 8px; background: #1a1a1a; gap: 8px; }
+        input { flex: 1; background: #000; border: 1px solid #444; color: #fff; padding: 8px; font-size: 12px; border-radius: 8px; outline: none; }
+        input:focus { border-color: #ff00ff; }
+        .btn { cursor: pointer; border: none; font-weight: bold; font-size: 11px; padding: 8px 15px; border-radius: 8px; transition: 0.2s; }
+        .btn-vai { background: #ff00ff; color: #000; }
+        .btn-yt { background: #ff0000; color: #fff; margin-left: 10px; }
+        .btn:hover { transform: scale(1.05); opacity: 0.9; }
+
+        /* VISITE */
+        .visits { padding: 0 15px; display: flex; align-items: center; border-left: 2px solid #333; }
+        .visits img { height: 20px; filter: invert(1) hue-rotate(180deg); }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="ticker">
+        <marquee scrollamount="5">🌟 BENVENUTI NEL NUOVO REGNO DI TIGROTTA - 100% SICURO - NO SPY - SOLO DIVERTIMENTO 🌟</marquee>
+    </div>
+    <div class="visits">
+        <img src="https://www.cutercounter.com/hits.php?id=gvxpndp&nd=6&style=1" alt="counter">
+    </div>
+    <div id="clock">00:00:00</div>
+</div>
+
+<div class="wrapper">
+    <div class="col col-left">
+        <div class="header" style="color:#ff00ff;">🔒 ZONA PRIVATA (HACK-CHAT)</div>
+        <div class="input-bar">
+            <input type="text" id="room-name" placeholder="Nome stanza...">
+            <button class="btn btn-vai" onclick="joinPrivate()">ENTRA</button>
+        </div>
+        <iframe id="private-frame" src="about:blank"></iframe>
+    </div>
+
+    <div class="col col-main">
+        <div class="header" style="color:#00f2ff;">🏟️ ARENA DI TIGROTTA (DARK MODE)</div>
+        <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3"></iframe>
+    </div>
+
+    <div class="col col-right">
+        <div class="header" style="color:#ff00ff;">
+            📺 YOUTUBE DJ
+            <button class="btn btn-yt" onclick="askYoutube()">+ CAMBIA MUSICA</button>
+        </div>
+        <iframe id="yt-player" src="https://www.youtube.com/embed/21X5lGlDOfg" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen></iframe>
+        <div class="header" style="font-size: 10px; color: #888;">INCOLLA IL LINK PER CAMBIARE VIDEO</div>
+    </div>
+</div>
+
+<script>
+    // OROLOGIO
+    function updateClock() { 
+        const now = new Date();
+        document.getElementById('clock').textContent = now.toLocaleTimeString('it-IT'); 
+    }
+    setInterval(updateClock, 1000); 
+    updateClock();
+
+    // JOIN CHAT PRIVATA
+    function joinPrivate() {
+        var name = document.getElementById('room-name').value;
+        if(name) { 
+            document.getElementById('private-frame').src = "https://hack.chat/?" + name; 
+        }
+    }
+
+    // CAMBIO VIDEO YOUTUBE (VERSIONE POTENZIATA)
+    function askYoutube() {
+        var url = prompt("Incolla qui il link del video di YouTube:");
+        if (url) {
+            var videoId = "";
+            if (url.includes("v=")) {
+                videoId = url.split("v=")[1].split("&")[0];
+            } else if (url.includes("youtu.be/")) {
+                videoId = url.split("youtu.be/")[1].split("?")[0];
+            } else {
+                videoId = url.split("/").pop().split("?")[0];
+            }
+            
+            if(videoId) {
+                document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1&rel=0";
+            } else {
+                alert("Link non valido! Riprova.");
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
